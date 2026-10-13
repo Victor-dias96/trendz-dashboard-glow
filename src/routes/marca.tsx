@@ -54,8 +54,8 @@ function Brand() {
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {creators.slice(0, 3).map((c) => (
-              <CreatorCard key={c.id} c={c} />
+            {creators.slice(0, 3).map((c, index) => (
+              <CreatorCard key={c.id} c={c} index={index} />
             ))}
           </div>
           <div className="mb-4 mt-10 flex items-center justify-between">
@@ -65,8 +65,8 @@ function Brand() {
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {events.slice(0, 2).map((e) => (
-              <EventCard key={e.id} e={e} />
+            {events.slice(0, 2).map((e, index) => (
+              <EventCard key={e.id} e={e} index={index} />
             ))}
           </div>
         </div>

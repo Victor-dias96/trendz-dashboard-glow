@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 import type { OpportunityStatus, StatTone } from "@/lib/demo";
 
 const nav = [
@@ -61,7 +62,8 @@ export function Shell({ children }: { children: ReactNode }) {
           ))}
         </nav>
       </header>
-      <main className="mx-auto max-w-7xl px-4 py-8">{children}</main>
+      <main className="page-enter mx-auto max-w-7xl px-4 py-8">{children}</main>
+      <Toaster theme="dark" position="top-center" offset={88} duration={3200} />
       <footer className="border-t py-8 text-center text-xs text-muted-foreground">
         Trendz Hub · MVP visual para apresentação
       </footer>

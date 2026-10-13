@@ -93,8 +93,8 @@ function Catalog() {
       </div>
       <p className="mb-4 text-sm text-muted-foreground">{list.length} creators encontrados</p>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((c) => (
-          <CreatorCard key={c.id} c={c} />
+        {list.map((c, index) => (
+          <CreatorCard key={c.id} c={c} index={index} />
         ))}
       </div>
     </Shell>

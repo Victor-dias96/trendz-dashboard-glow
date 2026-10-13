@@ -77,8 +77,8 @@ function Detail() {
           <section>
             <h2 className="mb-4 text-lg font-black">Creators relacionados</h2>
             <div className="grid gap-4 sm:grid-cols-2">
-              {rel.map((c) => (
-                <CreatorCard key={c.id} c={c} />
+              {rel.map((c, index) => (
+                <CreatorCard key={c.id} c={c} index={index} />
               ))}
             </div>
           </section>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Shell, PageTitle, Stat, Demo, StatusBadge } from "@/components/Shell";
 import { creatorWorkspace, opportunities, type StatTone } from "@/lib/demo";
+import { progressStyle } from "@/lib/motion";
 
 const toneClass: Record<StatTone, string> = {
   primary: "text-primary",
@@ -49,8 +50,8 @@ function CreatorDash() {
             aria-label="Completude do perfil"
           >
             <div
-              className="h-full rounded-full bg-brand"
-              style={{ width: `${creatorWorkspace.completeness}%` }}
+              className="progress-fill h-full rounded-full bg-brand"
+              style={progressStyle(creatorWorkspace.completeness)}
             />
           </div>
           <p className="mt-3 text-xs text-muted-foreground">{creatorWorkspace.completenessHint}</p>
