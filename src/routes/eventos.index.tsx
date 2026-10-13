@@ -91,8 +91,8 @@ function Events() {
         ))}
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((e) => (
-          <EventCard key={e.id} e={e} />
+        {list.map((e, index) => (
+          <EventCard key={e.id} e={e} index={index} />
         ))}
       </div>
     </Shell>

@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Shell, PageTitle, Demo, StatusBadge } from "@/components/Shell";
 import { opportunities } from "@/lib/demo";
+import { enterStyle } from "@/lib/motion";
 
 export const Route = createFileRoute("/creator/oportunidades")({
   head: () => ({
@@ -26,10 +28,14 @@ function Opps() {
         <Demo />
       </PageTitle>
       <div className="grid gap-5 md:grid-cols-2">
-        {opportunities.map((o) => {
+        {opportunities.map((o, index) => {
           const status = applied.includes(o.id) ? "Em análise" : o.status;
           return (
-            <div key={o.id} className="card space-y-4 p-6">
+            <div
+              key={o.id}
+              className="card card-enter card-hover space-y-4 p-6"
+              style={enterStyle(index)}
+            >
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-pink">{o.brand}</p>
@@ -55,8 +61,11 @@ function Opps() {
               {status === "Disponível" && (
                 <button
                   type="button"
-                  onClick={() => setApplied([...applied, o.id])}
-                  className="btn btn-primary w-full"
+                  onClick={() => {
+                    setApplied([...applied, o.id]);
+                    toast.success("Candidatura enviada (demo)");
+                  }}
+                  className="btn btn-primary btn-action w-full"
                 >
                   Candidatar-se
                 </button>

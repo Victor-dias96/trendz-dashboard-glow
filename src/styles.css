@@ -164,3 +164,97 @@
     border-color: var(--color-ring);
   }
 }
+
+@keyframes page-enter-kf {
+  from {
+    opacity: 0.92;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-enter-kf {
+  from {
+    opacity: 0.92;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes progress-in-kf {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress);
+  }
+}
+
+@utility page-enter {
+  animation: page-enter-kf 200ms ease-out;
+}
+
+@utility card-enter {
+  animation: fade-enter-kf 200ms ease-out backwards;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@utility card-hover {
+  transition:
+    transform 200ms ease-out,
+    border-color 200ms ease-out;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--primary) 50%, var(--border));
+  }
+}
+
+@utility progress-fill {
+  width: var(--progress, 0%);
+  animation: progress-in-kf 220ms ease-out;
+}
+
+@utility btn-confirmed {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
+@utility btn-action {
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+[data-sonner-toaster] [data-sonner-toast] {
+  transition-duration: 200ms !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-sonner-toaster] [data-sonner-toast][data-y-position="top"]:not([data-mounted="true"]) {
+    --y: translateY(-8px) !important;
+    opacity: 0.92 !important;
+  }
+
+  [data-sonner-toaster] [data-sonner-toast][data-removed="true"][data-y-position="top"][data-swipe-out="false"] {
+    --y: translateY(-8px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation-name: fade-enter-kf;
+    transform: none;
+  }
+
+  .card-hover:hover,
+  .btn-action:active {
+    transform: none;
+  }
+
+  .progress-fill {
+    animation: none;
+  }
+}

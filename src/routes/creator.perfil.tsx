@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
+import { toast } from "sonner";
 import { Shell, PageTitle, Demo } from "@/components/Shell";
 import { creatorProfile, niches } from "@/lib/demo";
 
@@ -66,6 +67,7 @@ function Edit() {
         onSubmit={(e) => {
           e.preventDefault();
           setSaved(true);
+          toast.success("Perfil salvo (demo)");
         }}
         className="grid gap-6 lg:grid-cols-2"
       >
@@ -116,7 +118,9 @@ function Edit() {
           />
         </Sec>
         <div className="flex items-end">
-          <button className="btn btn-primary w-full !py-3">
+          <button
+            className={`btn btn-primary btn-action w-full !py-3 ${saved ? "btn-confirmed" : ""}`}
+          >
             {saved ? "✓ Alterações salvas (demo)" : "Salvar perfil"}
           </button>
         </div>
