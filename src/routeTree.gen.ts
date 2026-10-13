@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as MarcaRouteImport } from './routes/marca'
+import { Route as CreatorIndexRouteImport } from './routes/creator.index'
+import { Route as CreatorOportunidadesRouteImport } from './routes/creator.oportunidades'
+import { Route as CreatorPerfilRouteImport } from './routes/creator.perfil'
+import { Route as CreatorsIndexRouteImport } from './routes/creators.index'
+import { Route as CreatorsIdRouteImport } from './routes/creators.$id'
+import { Route as EventosIndexRouteImport } from './routes/eventos.index'
+import { Route as EventosIdRouteImport } from './routes/eventos.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarcaRoute = MarcaRouteImport.update({
+  id: '/marca',
+  path: '/marca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorIndexRoute = CreatorIndexRouteImport.update({
+  id: '/creator/',
+  path: '/creator/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorOportunidadesRoute = CreatorOportunidadesRouteImport.update({
+  id: '/creator/oportunidades',
+  path: '/creator/oportunidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorPerfilRoute = CreatorPerfilRouteImport.update({
+  id: '/creator/perfil',
+  path: '/creator/perfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorsIndexRoute = CreatorsIndexRouteImport.update({
+  id: '/creators/',
+  path: '/creators/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorsIdRoute = CreatorsIdRouteImport.update({
+  id: '/creators/$id',
+  path: '/creators/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventosIndexRoute = EventosIndexRouteImport.update({
+  id: '/eventos/',
+  path: '/eventos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventosIdRoute = EventosIdRouteImport.update({
+  id: '/eventos/$id',
+  path: '/eventos/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/marca': typeof MarcaRoute
+  '/creator/oportunidades': typeof CreatorOportunidadesRoute
+  '/creator/perfil': typeof CreatorPerfilRoute
+  '/creators/$id': typeof CreatorsIdRoute
+  '/eventos/$id': typeof EventosIdRoute
+  '/creator/': typeof CreatorIndexRoute
+  '/creators/': typeof CreatorsIndexRoute
+  '/eventos/': typeof EventosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/marca': typeof MarcaRoute
+  '/creator/oportunidades': typeof CreatorOportunidadesRoute
+  '/creator/perfil': typeof CreatorPerfilRoute
+  '/creators/$id': typeof CreatorsIdRoute
+  '/eventos/$id': typeof EventosIdRoute
+  '/creator': typeof CreatorIndexRoute
+  '/creators': typeof CreatorsIndexRoute
+  '/eventos': typeof EventosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/marca': typeof MarcaRoute
+  '/creator/oportunidades': typeof CreatorOportunidadesRoute
+  '/creator/perfil': typeof CreatorPerfilRoute
+  '/creators/$id': typeof CreatorsIdRoute
+  '/eventos/$id': typeof EventosIdRoute
+  '/creator/': typeof CreatorIndexRoute
+  '/creators/': typeof CreatorsIndexRoute
+  '/eventos/': typeof EventosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/marca'
+    | '/creator/oportunidades'
+    | '/creator/perfil'
+    | '/creators/$id'
+    | '/eventos/$id'
+    | '/creator/'
+    | '/creators/'
+    | '/eventos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/marca'
+    | '/creator/oportunidades'
+    | '/creator/perfil'
+    | '/creators/$id'
+    | '/eventos/$id'
+    | '/creator'
+    | '/creators'
+    | '/eventos'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/marca'
+    | '/creator/oportunidades'
+    | '/creator/perfil'
+    | '/creators/$id'
+    | '/eventos/$id'
+    | '/creator/'
+    | '/creators/'
+    | '/eventos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  MarcaRoute: typeof MarcaRoute
+  CreatorOportunidadesRoute: typeof CreatorOportunidadesRoute
+  CreatorPerfilRoute: typeof CreatorPerfilRoute
+  CreatorsIdRoute: typeof CreatorsIdRoute
+  EventosIdRoute: typeof EventosIdRoute
+  CreatorIndexRoute: typeof CreatorIndexRoute
+  CreatorsIndexRoute: typeof CreatorsIndexRoute
+  EventosIndexRoute: typeof EventosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marca': {
+      id: '/marca'
+      path: '/marca'
+      fullPath: '/marca'
+      preLoaderRoute: typeof MarcaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator/': {
+      id: '/creator/'
+      path: '/creator'
+      fullPath: '/creator/'
+      preLoaderRoute: typeof CreatorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator/oportunidades': {
+      id: '/creator/oportunidades'
+      path: '/creator/oportunidades'
+      fullPath: '/creator/oportunidades'
+      preLoaderRoute: typeof CreatorOportunidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator/perfil': {
+      id: '/creator/perfil'
+      path: '/creator/perfil'
+      fullPath: '/creator/perfil'
+      preLoaderRoute: typeof CreatorPerfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creators/': {
+      id: '/creators/'
+      path: '/creators'
+      fullPath: '/creators/'
+      preLoaderRoute: typeof CreatorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creators/$id': {
+      id: '/creators/$id'
+      path: '/creators/$id'
+      fullPath: '/creators/$id'
+      preLoaderRoute: typeof CreatorsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eventos/': {
+      id: '/eventos/'
+      path: '/eventos'
+      fullPath: '/eventos/'
+      preLoaderRoute: typeof EventosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eventos/$id': {
+      id: '/eventos/$id'
+      path: '/eventos/$id'
+      fullPath: '/eventos/$id'
+      preLoaderRoute: typeof EventosIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  MarcaRoute: MarcaRoute,
+  CreatorOportunidadesRoute: CreatorOportunidadesRoute,
+  CreatorPerfilRoute: CreatorPerfilRoute,
+  CreatorsIdRoute: CreatorsIdRoute,
+  EventosIdRoute: EventosIdRoute,
+  CreatorIndexRoute: CreatorIndexRoute,
+  CreatorsIndexRoute: CreatorsIndexRoute,
+  EventosIndexRoute: EventosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
