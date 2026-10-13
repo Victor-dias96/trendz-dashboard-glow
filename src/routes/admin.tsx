@@ -33,7 +33,7 @@ function Admin() {
             {pending.map((p) => (
               <li key={p.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-surface p-4">
                 <div className="min-w-0"><p className="font-bold">{p.who}</p><p className="text-xs text-muted-foreground">{p.kind}</p></div>
-                {done[p.id] ? <StatusBadge s={done[p.id]} /> : (
+                {done[p.id] ? <StatusBadge s={done[p.id] ?? ""} /> : (
                   <div className="flex gap-2">
                     <button onClick={() => setDone({ ...done, [p.id]: "Aprovada" })} className="btn btn-primary !py-1.5">Aprovar</button>
                     <button onClick={() => setDone({ ...done, [p.id]: "Recusada" })} className="btn btn-ghost !py-1.5">Recusar</button>
