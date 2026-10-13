@@ -62,13 +62,39 @@
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.91 0.22 125);
   --gradient-brand: linear-gradient(120deg, var(--primary), var(--pink) 55%, var(--violet));
-  --gradient-glow: radial-gradient(60% 60% at 70% 20%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 70%), radial-gradient(50% 50% at 20% 80%, color-mix(in oklab, var(--pink) 30%, transparent), transparent 70%);
+  --gradient-glow:
+    radial-gradient(
+      60% 60% at 70% 20%,
+      color-mix(in oklab, var(--violet) 45%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 50% at 20% 80%,
+      color-mix(in oklab, var(--pink) 30%, transparent),
+      transparent 70%
+    );
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
 }
 
 @utility text-gradient {
@@ -77,32 +103,64 @@
   background-clip: text;
   color: transparent;
 }
-@utility bg-glow { background-image: var(--gradient-glow); }
-@utility bg-brand { background-image: var(--gradient-brand); }
+@utility bg-glow {
+  background-image: var(--gradient-glow);
+}
+@utility bg-brand {
+  background-image: var(--gradient-brand);
+}
 @utility card {
   border-radius: var(--radius-2xl);
   background: var(--color-card);
   border: 1px solid var(--color-border);
 }
 @utility btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  border-radius: 999px; padding: .6rem 1.2rem; font-weight: 700; font-size: .875rem;
-  transition: all .2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s;
 }
 @utility btn-primary {
-  background: var(--color-primary); color: var(--color-primary-foreground);
-  &:hover { filter: brightness(1.08); box-shadow: 0 0 24px color-mix(in oklab, var(--primary) 50%, transparent); }
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  &:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 0 24px color-mix(in oklab, var(--primary) 50%, transparent);
+  }
 }
 @utility btn-ghost {
-  background: var(--color-secondary); color: var(--color-foreground); border: 1px solid var(--color-border);
-  &:hover { background: var(--color-accent); }
+  background: var(--color-secondary);
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  &:hover {
+    background: var(--color-accent);
+  }
 }
 @utility chip {
-  display: inline-flex; align-items: center; border-radius: 999px; padding: .2rem .65rem;
-  font-size: .72rem; font-weight: 600; background: var(--color-secondary); color: var(--color-muted-foreground);
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--color-secondary);
+  color: var(--color-muted-foreground);
 }
 @utility field {
-  width: 100%; border-radius: var(--radius-lg); background: var(--color-surface);
-  border: 1px solid var(--color-input); padding: .6rem .9rem; font-size: .875rem; color: var(--color-foreground);
-  &:focus { outline: none; border-color: var(--color-ring); }
+  width: 100%;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-input);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
+  color: var(--color-foreground);
+  &:focus {
+    outline: none;
+    border-color: var(--color-ring);
+  }
 }
