@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
+import type { OpportunityStatus, StatTone } from "@/lib/demo";
 
 const nav = [
   { to: "/marca", label: "Marca" },
@@ -21,25 +22,49 @@ export function Shell({ children }: { children: ReactNode }) {
           <Link to="/" className="font-display text-lg font-black">
             trendz<span className="text-primary">.</span>hub
           </Link>
-          <nav className="hidden gap-1 md:flex">
+          <nav className="hidden gap-1 md:flex" aria-label="Principal">
             {nav.map((n) => (
-              <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground" activeProps={{ className: "bg-secondary !text-primary" }}>
+              <Link
+                key={n.to}
+                to={n.to}
+                className="rounded-full px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground"
+                activeProps={{ className: "bg-secondary !text-primary" }}
+              >
                 {n.label}
               </Link>
             ))}
           </nav>
-          <button className="btn btn-ghost md:hidden" onClick={() => setOpen(!open)}>Menu</button>
+          <button
+            type="button"
+            className="btn btn-ghost md:hidden"
+            aria-expanded={open}
+            aria-controls="nav-mobile"
+            onClick={() => setOpen((value) => !value)}
+          >
+            Menu
+          </button>
         </div>
-        {open && (
-          <nav className="flex flex-col gap-1 border-t px-4 py-3 md:hidden">
-            {nav.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm">{n.label}</Link>
-            ))}
-          </nav>
-        )}
+        <nav
+          id="nav-mobile"
+          aria-label="Mobile"
+          className={`${open ? "flex" : "hidden"} flex-col gap-1 border-t px-4 py-3 md:hidden`}
+        >
+          {nav.map((n) => (
+            <Link
+              key={n.to}
+              to={n.to}
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm"
+            >
+              {n.label}
+            </Link>
+          ))}
+        </nav>
       </header>
       <main className="mx-auto max-w-7xl px-4 py-8">{children}</main>
-      <footer className="border-t py-8 text-center text-xs text-muted-foreground">Trendz Hub · MVP visual para apresentação</footer>
+      <footer className="border-t py-8 text-center text-xs text-muted-foreground">
+        Trendz Hub · MVP visual para apresentação
+      </footer>
     </div>
   );
 }
@@ -48,7 +73,15 @@ export function Demo() {
   return <span className="chip !bg-pink/15 !text-pink">DEMO</span>;
 }
 
-export function PageTitle({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
+export function PageTitle({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: ReactNode;
+}) {
   return (
     <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-0">
@@ -60,7 +93,15 @@ export function PageTitle({ eyebrow, title, children }: { eyebrow: string; title
   );
 }
 
-export function Stat({ label, value, tone = "primary" }: { label: string; value: string; tone?: "primary" | "pink" | "violet" }) {
+export function Stat({
+  label,
+  value,
+  tone = "primary",
+}: {
+  label: string;
+  value: string;
+  tone?: StatTone;
+}) {
   const c = { primary: "text-primary", pink: "text-pink", violet: "text-violet" }[tone];
   return (
     <div className="card p-5">
@@ -70,10 +111,13 @@ export function Stat({ label, value, tone = "primary" }: { label: string; value:
   );
 }
 
-export function StatusBadge({ s }: { s: string }) {
+export function StatusBadge({ s }: { s: OpportunityStatus }) {
   const m: Record<string, string> = {
-    Aprovada: "bg-primary/15 text-primary", "Em análise": "bg-violet/20 text-violet",
-    Disponível: "bg-pink/15 text-pink", Recusada: "bg-destructive/15 text-destructive", Pendente: "bg-violet/20 text-violet",
+    Aprovada: "bg-primary/15 text-primary",
+    "Em análise": "bg-violet/20 text-violet",
+    Disponível: "bg-pink/15 text-pink",
+    Recusada: "bg-destructive/15 text-destructive",
+    Pendente: "bg-violet/20 text-violet",
   };
   return <span className={`chip ${m[s] ?? ""}`}>{s}</span>;
 }
